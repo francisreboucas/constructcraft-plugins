@@ -1,6 +1,6 @@
 name: Publish index
 
-# Rebuilds index.json, the file ConstructCAD reads, from plugins/*.toml.
+# Rebuilds index.json, the file ConstructCraft reads, from plugins/*.toml.
 on:
   push:
     branches: [main]

@@ -4,7 +4,7 @@
 2. For each version, attach a `.zip` of the plugin to a release of that repository, as a release asset.
 3. Open a pull request here that adds (or updates) `plugins/<id>.toml`.
 
-The checks below run on every pull request. A maintainer also reads the plugin's code before merging, and may decline plugins that are misleading, harmful or not about ConstructCAD.
+The checks below run on every pull request. A maintainer also reads the plugin's code before merging, and may decline plugins that are misleading, harmful or not about ConstructCraft.
 
 ## The entry
 
@@ -27,11 +27,11 @@ url = "https://github.com/you/quick_rooms/releases/download/v0.1.0/quick_rooms.z
 sha256 = "…"                          # sha256sum quick_rooms.zip
 permissions = []                      # the permissions in your plugin.toml
 path = "quick_rooms"                  # optional: the folder of plugin.toml in the zip
-min_app = "0.10.0"                    # optional: the oldest ConstructCAD it works with
+min_app = "0.10.0"                    # optional: the oldest ConstructCraft it works with
 notes = "First release."              # optional
 ```
 
-Add a new `[[versions]]` table for each release and keep the older ones; ConstructCAD offers the newest one its plugin API supports.
+Add a new `[[versions]]` table for each release and keep the older ones; ConstructCraft offers the newest one its plugin API supports.
 
 ## The archive
 
@@ -55,4 +55,4 @@ You do not need to edit `index.json`: it is rebuilt when the pull request is mer
 
 ## Permissions
 
-`files` lets a plugin run ConstructCAD's commands that read or write files (import, export, save). Ask for it only if the plugin needs it, and say why in its description. Plugins never get network access.
+`files` lets a plugin run ConstructCraft's commands that read or write files (import, export, save). Ask for it only if the plugin needs it, and say why in its description. Plugins never get network access.

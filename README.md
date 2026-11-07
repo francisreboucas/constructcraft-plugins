@@ -1,25 +1,25 @@
-# ConstructCAD plugins
+# ConstructCraft plugins
 
 [Português](README.pt-BR.md)
 
-The community index of [ConstructCAD](https://github.com/francisreboucas/constructcad) plugins. A plugin is a folder with a `plugin.toml` manifest and Lua code that adds commands to ConstructCAD. Its commands run like the built-in ones: in the app, with `ccad run`, from scripts and for AI agents over MCP. How to write one is in ConstructCAD's [automation guide](https://github.com/francisreboucas/constructcad/blob/main/docs/automation.md#plugins).
+The community index of [ConstructCraft](https://github.com/francisreboucas/constructcraft) plugins. A plugin is a folder with a `plugin.toml` manifest and Lua code that adds commands to ConstructCraft. Its commands run like the built-in ones: in the app, with `ccad run`, from scripts and for AI agents over MCP. How to write one is in ConstructCraft's [automation guide](https://github.com/francisreboucas/constructcraft/blob/main/docs/automation.md#plugins).
 
-This repository holds no plugin code. Each plugin lives in its author's own repository, and this index lists it: one file per plugin in [`plugins/`](plugins), with where to download each version and its SHA-256 checksum. [`index.json`](index.json) gathers them all for ConstructCAD to read, and is rebuilt automatically when an entry changes:
+This repository holds no plugin code. Each plugin lives in its author's own repository, and this index lists it: one file per plugin in [`plugins/`](plugins), with where to download each version and its SHA-256 checksum. [`index.json`](index.json) gathers them all for ConstructCraft to read, and is rebuilt automatically when an entry changes:
 
 ```
-https://raw.githubusercontent.com/francisreboucas/constructcad-plugins/main/index.json
+https://raw.githubusercontent.com/francisreboucas/constructcraft-plugins/main/index.json
 ```
 
 ## Installing a plugin
 
-Until ConstructCAD's plugin manager reads this index, download a plugin's archive from its entry, check its checksum, unpack it into a folder and load it:
+Until ConstructCraft's plugin manager reads this index, download a plugin's archive from its entry, check its checksum, unpack it into a folder and load it:
 
 ```sh
 ccad --plugins /path/to/plugins plugins     # list what loaded
 ccad --plugins /path/to/plugins run <plugin>__<command> key=value
 ```
 
-Plugins run sandboxed: they reach the project only through ConstructCAD's commands, cannot touch files or the network, and have instruction and memory limits. A plugin can import, export or save files only if it asks for the `files` permission. Review a plugin before you install it anyway: the index checks entries, not what plugins do.
+Plugins run sandboxed: they reach the project only through ConstructCraft's commands, cannot touch files or the network, and have instruction and memory limits. A plugin can import, export or save files only if it asks for the `files` permission. Review a plugin before you install it anyway: the index checks entries, not what plugins do.
 
 ## Submitting a plugin
 
