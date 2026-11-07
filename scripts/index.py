@@ -7,7 +7,7 @@
     python scripts/index.py build --check      # fail if index.json is not up to date
 
 The rules for entries and archives are in CONTRIBUTING.md. The manifest rules
-mirror ConstructCAD's own loader (crates/cc_lua/src/plugin.rs).
+mirror ConstructCraft's own loader (crates/cc_lua/src/plugin.rs).
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ INDEX = ROOT / "index.json"
 
 # The format of index.json; bumped when a reader would misread a new one.
 INDEX_FORMAT = 1
-# The newest plugin API a released ConstructCAD provides.
+# The newest plugin API a released ConstructCraft provides.
 MAX_API = 1
 KNOWN_PERMISSIONS = {"files"}
 MAX_ARCHIVE = 20 * 1024 * 1024
@@ -135,7 +135,7 @@ def check_entry(path: Path, p: Problems) -> dict | None:
         if not (isinstance(perms, list) and all(x in KNOWN_PERMISSIONS for x in perms)):
             p.add(vw, f"permissions: a list of {sorted(KNOWN_PERMISSIONS)}")
         if "min_app" in v and not (isinstance(v["min_app"], str) and VERSION.match(v["min_app"])):
-            p.add(vw, "min_app: the oldest ConstructCAD version, MAJOR.MINOR.PATCH")
+            p.add(vw, "min_app: the oldest ConstructCraft version, MAJOR.MINOR.PATCH")
         if "notes" in v and not is_text(v["notes"], 1000):
             p.add(vw, "notes: up to 1000 characters")
     return entry
@@ -147,7 +147,7 @@ def safe_rel(s: str) -> bool:
 
 
 def download(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "constructcad-plugins-index"})
+    req = urllib.request.Request(url, headers={"User-Agent": "constructcraft-plugins-index"})
     with urllib.request.urlopen(req, timeout=60) as r:
         data = r.read(MAX_ARCHIVE + 1)
     if len(data) > MAX_ARCHIVE:

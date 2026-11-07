@@ -1,25 +1,25 @@
-# Plugins do ConstructCAD
+# Plugins do ConstructCraft
 
 [English](README.md)
 
-O índice comunitário de plugins do [ConstructCAD](https://github.com/francisreboucas/constructcad). Um plugin é uma pasta com um manifesto `plugin.toml` e código Lua que acrescenta comandos ao ConstructCAD. Os comandos dele funcionam como os nativos: no aplicativo, com `ccad run`, em scripts e para agentes de IA via MCP. Como escrever um está no [guia de automação](https://github.com/francisreboucas/constructcad/blob/main/docs/automacao.md#plugins) do ConstructCAD.
+O índice comunitário de plugins do [ConstructCraft](https://github.com/francisreboucas/constructcraft). Um plugin é uma pasta com um manifesto `plugin.toml` e código Lua que acrescenta comandos ao ConstructCraft. Os comandos dele funcionam como os nativos: no aplicativo, com `ccad run`, em scripts e para agentes de IA via MCP. Como escrever um está no [guia de automação](https://github.com/francisreboucas/constructcraft/blob/main/docs/automacao.md#plugins) do ConstructCraft.
 
-Este repositório não guarda o código dos plugins. Cada plugin fica no repositório do seu autor, e este índice o lista: um arquivo por plugin em [`plugins/`](plugins), com de onde baixar cada versão e o checksum SHA-256 dela. O [`index.json`](index.json) reúne todos para o ConstructCAD ler e é regenerado automaticamente quando uma entrada muda:
+Este repositório não guarda o código dos plugins. Cada plugin fica no repositório do seu autor, e este índice o lista: um arquivo por plugin em [`plugins/`](plugins), com de onde baixar cada versão e o checksum SHA-256 dela. O [`index.json`](index.json) reúne todos para o ConstructCraft ler e é regenerado automaticamente quando uma entrada muda:
 
 ```
-https://raw.githubusercontent.com/francisreboucas/constructcad-plugins/main/index.json
+https://raw.githubusercontent.com/francisreboucas/constructcraft-plugins/main/index.json
 ```
 
 ## Instalando um plugin
 
-Enquanto o gerenciador de plugins do ConstructCAD não lê este índice, baixe o arquivo do plugin indicado na entrada, confira o checksum, descompacte numa pasta e carregue-o:
+Enquanto o gerenciador de plugins do ConstructCraft não lê este índice, baixe o arquivo do plugin indicado na entrada, confira o checksum, descompacte numa pasta e carregue-o:
 
 ```sh
 ccad --plugins /caminho/para/plugins plugins     # lista o que carregou
 ccad --plugins /caminho/para/plugins run <plugin>__<comando> chave=valor
 ```
 
-Os plugins rodam em sandbox: só chegam ao projeto pelos comandos do ConstructCAD, não acessam arquivos nem a rede e têm limites de instruções e de memória. Um plugin só importa, exporta ou salva arquivos se pedir a permissão `files`. Mesmo assim, examine um plugin antes de instalá-lo: o índice verifica as entradas, não o que os plugins fazem.
+Os plugins rodam em sandbox: só chegam ao projeto pelos comandos do ConstructCraft, não acessam arquivos nem a rede e têm limites de instruções e de memória. Um plugin só importa, exporta ou salva arquivos se pedir a permissão `files`. Mesmo assim, examine um plugin antes de instalá-lo: o índice verifica as entradas, não o que os plugins fazem.
 
 ## Enviando um plugin
 
