@@ -21,7 +21,7 @@ ccad --plugins /caminho/para/plugins plugins     # lista o que carregou
 ccad --plugins /caminho/para/plugins run <plugin>__<comando> chave=valor
 ```
 
-Os plugins rodam em sandbox: só chegam ao projeto pelos comandos do ConstructCraft, não acessam arquivos nem a rede e têm limites de instruções e de memória. Um plugin só importa, exporta ou salva arquivos se pedir a permissão `files`. Mesmo assim, examine um plugin antes de instalá-lo: o índice verifica as entradas, não o que os plugins fazem.
+Os plugins rodam em sandbox: só chegam ao projeto pelos comandos do ConstructCraft, não acessam arquivos nem a rede e têm limites de instruções e de memória. Um plugin só lê ou grava qualquer arquivo se pedir a permissão `files`; com a API de plugins 2, ele pode receber apenas o arquivo que você escolher. Só roda um programa externo, como um simulador, com a permissão `tools`, e apenas um que você aprove e configure. Mesmo assim, examine um plugin antes de instalá-lo: o índice verifica as entradas, não o que os plugins fazem.
 
 ## Enviando um plugin
 

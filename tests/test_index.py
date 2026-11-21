@@ -115,6 +115,49 @@ class Archives(unittest.TestCase):
         self.assertTrue(any("sha256 does not match" in x for x in p.items))
 
 
+class Api2(unittest.TestCase):
+    M2 = MANIFEST.replace("api = 1", "api = 2")
+
+    def check2(self, files: dict[str, str], perms: str = "[]") -> list[str]:
+        data = zip_of(files)
+        text = entry_text(sha=hashlib.sha256(data).hexdigest(), version_extra=f"permissions = {perms}")
+        entry, problems = check_text(text.replace("api = 1", "api = 2"))
+        self.assertEqual(problems, [])
+        p = index.Problems()
+        index.check_archive(entry, entry["versions"][0], data, "t", p)
+        return p.items
+
+    def test_api_2_is_accepted_and_3_refused(self):
+        _, problems = check_text(entry_text().replace("api = 1", "api = 2"))
+        self.assertEqual(problems, [])
+        _, problems = check_text(entry_text().replace("api = 1", "api = 3"))
+        self.assertTrue(any("api:" in x for x in problems), problems)
+
+    def test_permissions(self):
+        _, problems = check_text(entry_text(version_extra='permissions = ["files", "tools"]'))
+        self.assertEqual(problems, [])
+        _, problems = check_text(entry_text(version_extra='permissions = ["shell"]'))
+        self.assertTrue(any("permissions" in x for x in problems), problems)
+
+    def test_button_icons(self):
+        m = self.M2 + '[[buttons]]\nicon = "icons/room.svg"\n'
+        self.assertEqual(self.check2({"plugin.toml": m, "main.lua": "", "icons/room.svg": "<svg/>"}), [])
+        problems = self.check2({"plugin.toml": m, "main.lua": ""})
+        self.assertTrue(any("icons/room.svg is missing" in x for x in problems), problems)
+        problems = self.check2({"plugin.toml": m, "main.lua": "", "icons/room.svg": "x" * (65 * 1024)})
+        self.assertTrue(any("larger than" in x for x in problems), problems)
+        png = self.M2 + '[[buttons]]\nicon = "room.png"\n'
+        problems = self.check2({"plugin.toml": png, "main.lua": "", "room.png": ""})
+        self.assertTrue(any(".svg" in x for x in problems), problems)
+
+    def test_tools_need_the_permission(self):
+        m = self.M2 + '[[tools]]\nname = "sim"\n'
+        problems = self.check2({"plugin.toml": m, "main.lua": ""})
+        self.assertTrue(any("'tools' permission" in x for x in problems), problems)
+        m2 = m.replace("api = 2", 'api = 2\npermissions = ["tools"]')
+        self.assertEqual(self.check2({"plugin.toml": m2, "main.lua": ""}, '["tools"]'), [])
+
+
 class Build(unittest.TestCase):
     def test_versions_are_newest_first_with_defaults(self):
         entry, _ = check_text(entry_text())
