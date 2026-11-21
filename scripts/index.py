@@ -30,8 +30,9 @@ INDEX = ROOT / "index.json"
 # The format of index.json; bumped when a reader would misread a new one.
 INDEX_FORMAT = 1
 # The newest plugin API a released ConstructCraft provides.
-MAX_API = 1
-KNOWN_PERMISSIONS = {"files"}
+MAX_API = 2
+KNOWN_PERMISSIONS = {"files", "tools"}
+MAX_ICON = 64 * 1024
 MAX_ARCHIVE = 20 * 1024 * 1024
 MAX_FILES = 2000
 MAX_UNPACKED = 50 * 1024 * 1024
@@ -216,6 +217,22 @@ def check_archive(entry: dict, v: dict, data: bytes, where: str, p: Problems) ->
         p.add(where, f"plugin.toml main '{main}' is not a .lua file inside the plugin")
     elif root + main not in names:
         p.add(where, f"{main} is missing from the archive")
+    api = manifest.get("api", 1)
+    if isinstance(api, int) and api >= 2:
+        sizes = {i.filename: i.file_size for i in infos if not i.is_dir()}
+        buttons = manifest.get("buttons", [])
+        for b in buttons if isinstance(buttons, list) else []:
+            icon = b.get("icon") if isinstance(b, dict) else None
+            if icon is None:
+                continue
+            if not (isinstance(icon, str) and safe_rel(icon) and icon.endswith(".svg")):
+                p.add(where, f"plugin.toml button icon '{icon}' is not a .svg file inside the plugin")
+            elif root + icon not in sizes:
+                p.add(where, f"button icon {icon} is missing from the archive")
+            elif sizes[root + icon] > MAX_ICON:
+                p.add(where, f"button icon {icon} is larger than {MAX_ICON} bytes")
+        if "tools" in manifest and "tools" not in manifest.get("permissions", []):
+            p.add(where, "plugin.toml has [[tools]] but not the 'tools' permission")
 
 
 def load_entries(p: Problems) -> list[dict]:

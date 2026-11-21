@@ -22,10 +22,10 @@ tags = ["architecture", "rooms"]               # optional, up to 8
 
 [[versions]]
 version = "0.1.0"                     # the version in your plugin.toml
-api = 1                               # the api in your plugin.toml
+api = 2                               # the api in your plugin.toml
 url = "https://github.com/you/quick_rooms/releases/download/v0.1.0/quick_rooms.zip"
 sha256 = "…"                          # sha256sum quick_rooms.zip
-permissions = []                      # the permissions in your plugin.toml
+permissions = []                      # e.g. ["files"]; the permissions in your plugin.toml
 path = "quick_rooms"                  # optional: the folder of plugin.toml in the zip
 min_app = "0.10.0"                    # optional: the oldest ConstructCraft it works with
 notes = "First release."              # optional
@@ -55,4 +55,13 @@ You do not need to edit `index.json`: it is rebuilt when the pull request is mer
 
 ## Permissions
 
-`files` lets a plugin run ConstructCraft's commands that read or write files (import, export, save). Ask for it only if the plugin needs it, and say why in its description. Plugins never get network access.
+`api = 2` is the current plugin API; api 1 plugins still load.
+
+- `files`: read or write any file through ConstructCraft's commands (import, export, save).
+- `tools`: run an external program that the user approves and configures, such as a simulator. The plugin declares it in `[[tools]]`.
+
+Ask only for what the plugin needs, and say why in its description. Plugins never get network access.
+
+With api 2 a plugin often does not need `files`: it can instead receive just the file the user picks, through the `save_path` and `open_path` parameters.
+
+With api 2 the archive check also looks for every `[[buttons]]` icon (an `.svg` of at most 64 KiB) and refuses `[[tools]]` without the `tools` permission.

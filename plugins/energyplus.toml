@@ -1,0 +1,15 @@
+id = "energyplus"
+name = "EnergyPlus"
+description = "Export the building as an EnergyPlus model, simulate it and keep each room's heating and cooling loads. Asks for the tools permission to run EnergyPlus, which you install and approve."
+authors = ["Francis Rebouças"]
+license = "GPL-3.0-or-later"
+repository = "https://github.com/francisreboucas/constructcraft-energyplus"
+tags = ["energy", "simulation", "energyplus", "analysis"]
+
+[[versions]]
+version = "0.2.0"
+api = 2
+url = "https://github.com/francisreboucas/constructcraft-energyplus/releases/download/v0.2.0/energyplus.zip"
+sha256 = "d54a80f6de6376a67a137706855f02029f7f638135cd6bfdad163df2d44d81ad"
+permissions = ["tools"]
+notes = "First release. Needs EnergyPlus 26.2."
