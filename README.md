@@ -19,7 +19,7 @@ ccad --plugins /path/to/plugins plugins     # list what loaded
 ccad --plugins /path/to/plugins run <plugin>__<command> key=value
 ```
 
-Plugins run sandboxed: they reach the project only through ConstructCraft's commands, cannot touch files or the network, and have instruction and memory limits. A plugin can import, export or save files only if it asks for the `files` permission. Review a plugin before you install it anyway: the index checks entries, not what plugins do.
+Plugins run sandboxed: they reach the project only through ConstructCraft's commands, cannot touch files or the network, and have instruction and memory limits. A plugin can read or write any file only if it asks for the `files` permission; with plugin API 2 it can instead receive just the file you pick. It can run an external program, such as a simulator, only with the `tools` permission, and only one you approve and configure. Review a plugin before you install it anyway: the index checks entries, not what plugins do.
 
 ## Submitting a plugin
 
