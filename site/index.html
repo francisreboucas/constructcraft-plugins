@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ConstructCraft Marketplace</title>
+  <meta name="description" content="The community index of ConstructCraft plugins.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/json" href="index.json" title="Plugin index">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="./">
+        <img src="favicon.svg" alt="" width="28" height="28">
+        <span>ConstructCraft <b data-i18n="marketplace">Marketplace</b></span>
+      </a>
+      <nav>
+        <a href="#install" data-i18n="nav_install">Installing</a>
+        <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/CONTRIBUTING.md" data-i18n="nav_submit">Submit a plugin</a>
+        <button type="button" id="lang" class="lang" aria-label="Language">PT</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 data-i18n="title">Plugins for ConstructCraft</h1>
+      <p data-i18n="lead">Commands made by the community. They run like the built-in ones: in the app, with <code>ccad run</code>, from scripts and for AI agents over MCP.</p>
+      <div class="controls">
+        <input type="search" id="q" autocomplete="off" spellcheck="false" placeholder="Search plugins" data-i18n-placeholder="search" aria-label="Search">
+        <div id="tags" class="tags" role="group" aria-label="Tags"></div>
+      </div>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+    <ul id="list" class="list"></ul>
+
+    <section id="install" class="info">
+      <h2 data-i18n="install_title">Installing a plugin</h2>
+      <p data-i18n="install_text">Until ConstructCraft's plugin manager reads this index, download a plugin's archive, check its SHA-256 checksum, unpack it into a folder and load it:</p>
+      <pre><code><span data-i18n="install_cmd1">ccad --plugins /path/to/plugins plugins</span>
+<span data-i18n="install_cmd2">ccad --plugins /path/to/plugins run &lt;plugin&gt;__&lt;command&gt; key=value</span></code></pre>
+      <p data-i18n="sandbox">Plugins run sandboxed: they reach the project only through ConstructCraft's commands, cannot touch files or the network, and have instruction and memory limits, unless they ask for a permission. Review a plugin before you install it anyway: the index checks entries, not what plugins do.</p>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span data-i18n="footer">Index under the MIT License; each plugin keeps its own license.</span>
+    <a href="index.json">index.json</a>
+    <a href="https://github.com/francisreboucas/constructcraft-plugins">GitHub</a>
+  </footer>
+
+  <template id="card">
+    <li class="card">
+      <div class="card-head">
+        <h2><a class="anchor"></a></h2>
+        <span class="ver"></span>
+      </div>
+      <p class="desc"></p>
+      <ul class="chips"></ul>
+      <dl class="meta"></dl>
+      <div class="actions">
+        <a class="btn primary download" data-i18n="download">Download</a>
+        <button type="button" class="btn copy" data-i18n="copy_sha">Copy SHA-256</button>
+        <a class="btn repo" data-i18n="source">Source</a>
+        <a class="btn home" data-i18n="homepage">Homepage</a>
+      </div>
+      <details class="versions">
+        <summary data-i18n="all_versions">All versions</summary>
+        <table>
+          <thead><tr>
+            <th data-i18n="col_version">Version</th>
+            <th data-i18n="col_api">API</th>
+            <th data-i18n="col_perms">Permissions</th>
+            <th data-i18n="col_notes">Notes</th>
+            <th>SHA-256</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </details>
+    </li>
+  </template>
+</body>
+</html>
