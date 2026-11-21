@@ -10,6 +10,8 @@ Este repositório não guarda o código dos plugins. Cada plugin fica no reposit
 https://raw.githubusercontent.com/francisreboucas/constructcraft-plugins/main/index.json
 ```
 
+Veja os plugins em **[marketplace.constructcraft.net](https://marketplace.constructcraft.net)**.
+
 ## Instalando um plugin
 
 Enquanto o gerenciador de plugins do ConstructCraft não lê este índice, baixe o arquivo do plugin indicado na entrada, confira o checksum, descompacte numa pasta e carregue-o:
@@ -31,6 +33,7 @@ Abra um pull request que acrescente `plugins/<id>.toml`. O [CONTRIBUTING.md](CON
 |---|---|
 | `plugins/<id>.toml` | uma entrada por plugin, escrita pelo autor |
 | `index.json` | todas as entradas num arquivo (gerado; não edite) |
+| `site/` | o site do marketplace, publicado no GitHub Pages com um `index.json` atualizado |
 | `scripts/index.py` | verifica entradas e arquivos, gera o `index.json` (Python 3.11+, só a biblioteca padrão) |
 | `tests/` | testes do verificador |
 
