@@ -10,13 +10,13 @@
 <meta property="og:description" content="Community plugins for ConstructCraft, the open source BIM built in Rust.">
 <meta property="og:url" content="https://marketplace.constructcraft.net/">
 <meta property="og:image" content="https://marketplace.constructcraft.net/assets/icon.png">
-<meta name="theme-color" content="#0a1230">
+<meta name="theme-color" content="#0b1220">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="alternate" type="application/json" href="index.json" title="Plugin index">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
@@ -24,33 +24,44 @@
 
 <a class="skip" href="#plugins"><span lang="en">Skip to the plugins</span><span lang="pt-BR">Ir para os plugins</span></a>
 
+<!-- Network bar: identical on constructcraft.net, 3D CraftHouse and the marketplace. -->
+<div class="netbar">
+  <div class="wrap">
+    <nav aria-label="ConstructCraft network">
+      <span class="label"><span lang="en">Network</span><span lang="pt-BR">Rede</span></span>
+      <a href="https://constructcraft.net/">ConstructCraft</a>
+      <a href="https://3dcrafthouse.constructcraft.net/">3D CraftHouse</a>
+      <a href="./" aria-current="page">Marketplace</a>
+      <a href="https://constructcraft.net/#docs">Docs</a>
+      <a href="https://constructcraft.net/#community"><span lang="en">Community</span><span lang="pt-BR">Comunidade</span></a>
+    </nav>
+    <div class="tools">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="pt-BR" aria-pressed="false">PT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <header class="top">
   <div class="wrap">
     <a class="brand" href="./">
-      <img src="assets/icon.png" alt="" width="30" height="30">
+      <img src="assets/icon.png" alt="" width="28" height="28">
       <span>ConstructCraft</span>
-      <span class="brand-tag">Plugins</span>
+      <small>Marketplace</small>
     </a>
     <nav class="links" aria-label="Sections">
       <a href="#plugins">Plugins</a>
       <a href="#install"><span lang="en">Install</span><span lang="pt-BR">Instalar</span></a>
       <a href="#security"><span lang="en">Security</span><span lang="pt-BR">Segurança</span></a>
-      <a href="#publish"><span lang="en">Publish</span><span lang="pt-BR">Publicar</span></a>
-      <span class="sep" aria-hidden="true"></span>
-      <a href="https://constructcraft.net/">ConstructCraft</a>
-      <a href="https://3dcrafthouse.constructcraft.net/">3D CraftHouse</a>
-      <a href="https://github.com/francisreboucas/constructcraft-plugins">GitHub</a>
+      <a href="#publish"><span lang="en">For developers</span><span lang="pt-BR">Para desenvolvedores</span></a>
     </nav>
-    <div class="top-actions">
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-set-lang="pt-BR" aria-pressed="false">PT</button>
-      </div>
-      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span class="sr">Menu</span>
-      </button>
-    </div>
+    <a class="btn night cta-top" href="#publish"><span lang="en">Publish a plugin</span><span lang="pt-BR">Publicar um plugin</span></a>
+    <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr">Menu</span>
+    </button>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Menu" hidden>
     <div class="wrap">
@@ -58,8 +69,6 @@
       <a href="#install"><span lang="en">Install</span><span lang="pt-BR">Instalar</span></a>
       <a href="#security"><span lang="en">Security</span><span lang="pt-BR">Segurança</span></a>
       <a href="#publish"><span lang="en">Publish a plugin</span><span lang="pt-BR">Publicar um plugin</span></a>
-      <a href="https://constructcraft.net/">ConstructCraft</a>
-      <a href="https://3dcrafthouse.constructcraft.net/">3D CraftHouse</a>
       <a href="https://github.com/francisreboucas/constructcraft-plugins">GitHub</a>
     </div>
   </nav>
@@ -75,73 +84,60 @@
           <span lang="pt-BR">Ícones de botão, escolha de arquivo e ferramentas externas</span>
         </a>
         <h1>
-          <span lang="en">Extend ConstructCraft<br><span class="grad">with community plugins</span></span>
-          <span lang="pt-BR">Amplie o ConstructCraft<br><span class="grad">com plugins da comunidade</span></span>
+          <span lang="en">Extend ConstructCraft with community plugins</span>
+          <span lang="pt-BR">Amplie o ConstructCraft com plugins da comunidade</span>
         </h1>
         <p class="lead">
-          <span lang="en">Plugins add commands written in Lua. They run like the built-in ones: from the ribbon, with <code>ccad run</code>, in scripts and for AI agents over MCP. Sandboxed, checksummed and open source.</span>
-          <span lang="pt-BR">Plugins acrescentam comandos escritos em Lua. Eles funcionam como os nativos: pelo ribbon, com <code>ccad run</code>, em scripts e para agentes de IA via MCP. Em sandbox, com checksum e de código aberto.</span>
+          <span lang="en">Plugins add commands written in Lua. They run like the built-in ones: from the ribbon, with <code>ccad run</code>, in scripts and for AI agents over MCP.</span>
+          <span lang="pt-BR">Plugins acrescentam comandos escritos em Lua. Eles funcionam como os nativos: pelo ribbon, com <code>ccad run</code>, em scripts e para agentes de IA via MCP.</span>
         </p>
         <div class="cta">
           <a class="btn primary big" href="#plugins">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v4M15 3v4M7 7h10v4a5 5 0 0 1-10 0V7Zm5 9v5"/></svg>
             <span class="btn-text">
               <span lang="en">Browse plugins</span><span lang="pt-BR">Ver os plugins</span>
               <small class="hero-count"></small>
             </span>
           </a>
-          <a class="btn ghost big" href="#publish">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
-            <span class="btn-text">
-              <span lang="en">Publish a plugin</span><span lang="pt-BR">Publicar um plugin</span>
-              <small><span lang="en">One pull request</span><span lang="pt-BR">Um pull request</span></small>
-            </span>
-          </a>
+          <a class="btn night big" href="#publish"><span lang="en">Publish a plugin</span><span lang="pt-BR">Publicar um plugin</span></a>
         </div>
-        <p class="meta">
-          <a href="index.json">index.json</a> ·
-          <span lang="en">Index under MIT</span><span lang="pt-BR">Índice sob MIT</span> ·
-          <a href="https://github.com/francisreboucas/constructcraft-plugins"><span lang="en">Source code</span><span lang="pt-BR">Código-fonte</span></a>
-        </p>
+        <ul class="trust">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg><span lang="en">Sandboxed by default</span><span lang="pt-BR">Sandbox por padrão</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span lang="en">SHA-256 on every archive</span><span lang="pt-BR">SHA-256 em cada arquivo</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4"/></svg><span lang="en">Open source</span><span lang="pt-BR">Código aberto</span></li>
+        </ul>
       </div>
-
-      <div class="hero-art" aria-hidden="true">
-        <div class="win">
-          <div class="win-bar"><i></i><i></i><i></i><span>quick_rooms/main.lua</span></div>
+      <div class="term" aria-hidden="true">
+        <div class="bar">quick_rooms/main.lua</div>
 <pre><code><span class="c">-- registered once, when the plugin loads</span>
-ccad.<span class="t">command</span> {
-  <span class="k">name</span> = <span class="s">"rectangle_room"</span>,
-  <span class="k">title</span> = <span class="s">"Rectangular room"</span>,
-  <span class="k">kind</span> = <span class="s">"edit"</span>,
-  <span class="k">run</span> = <span class="t">function</span>(args)
+ccad.command {
+  name  = <span class="s">"rectangle_room"</span>,
+  title = <span class="s">"Rectangular room"</span>,
+  kind  = <span class="s">"edit"</span>,
+  run   = function(args)
     <span class="c">-- walls, floor and room, one undo step</span>
-    ccad.<span class="t">run</span>(<span class="s">"wall_create"</span>, { … })
-  <span class="t">end</span>,
+    ccad.run(<span class="s">"wall_create"</span>, { … })
+  end,
 }</code></pre>
-        </div>
-        <div class="win term">
-          <div class="win-bar"><i></i><i></i><i></i><span>terminal</span></div>
+        <div class="bar bar-mid">terminal</div>
 <pre><code><span class="p">$</span> ccad --plugins ./plugins run \
     quick_rooms__rectangle_room \
     width=4 depth=3 name=Office door=south</code></pre>
-        </div>
       </div>
     </div>
   </div>
 
-  <div class="stats">
+  <div class="proof">
     <div class="wrap">
-      <div><b id="stat-plugins">—</b><span lang="en">plugins</span><span lang="pt-BR">plugins</span></div>
+      <div><b id="stat-plugins">—</b><span>plugins</span></div>
       <div><b id="stat-authors">—</b><span lang="en">authors</span><span lang="pt-BR">autores</span></div>
       <div><b id="stat-versions">—</b><span lang="en">releases</span><span lang="pt-BR">versões</span></div>
-      <div><b>SHA-256</b><span lang="en">on every archive</span><span lang="pt-BR">em cada arquivo</span></div>
-      <div><b>Lua</b><span lang="en">sandboxed commands</span><span lang="pt-BR">comandos em sandbox</span></div>
+      <div><b>SHA-256</b><span lang="en">checked on every archive</span><span lang="pt-BR">verificado em cada arquivo</span></div>
     </div>
   </div>
 
   <section id="plugins">
     <div class="wrap">
-      <div class="lib-head">
+      <div class="head">
         <div>
           <span class="eyebrow"><span lang="en">Index</span><span lang="pt-BR">Índice</span></span>
           <h2>Plugins</h2>
@@ -150,6 +146,7 @@ ccad.<span class="t">command</span> {
             <span lang="pt-BR">Cada plugin fica no repositório do autor; este índice diz de onde baixar cada versão e o checksum dela, e verifica cada entrada e cada arquivo.</span>
           </p>
         </div>
+        <a class="more" href="index.json">index.json →</a>
       </div>
       <div class="lib-tools">
         <label class="search">
@@ -178,23 +175,20 @@ ccad.<span class="t">command</span> {
         <span lang="pt-BR">Um plugin é uma pasta com um <code>plugin.toml</code> e código Lua. Os comandos dele se chamam <code>&lt;plugin&gt;__&lt;comando&gt;</code> e aparecem no catálogo junto com os nativos.</span>
       </p>
       <ol class="steps">
-        <li class="step" style="--c: var(--amber)">
-          <span class="num">1</span>
-          <h3><span lang="en">Download</span><span lang="pt-BR">Baixe</span></h3>
+        <li class="step">
+          <span class="num">01 · <span lang="en">DOWNLOAD</span><span lang="pt-BR">BAIXE</span></span>
           <p><span lang="en">Get the <code>.zip</code> of the version you want from its card. It comes straight from the author's release.</span><span lang="pt-BR">Pegue o <code>.zip</code> da versão que quiser no card dela. Ele vem direto da release do autor.</span></p>
         </li>
-        <li class="step" style="--c: var(--violet)">
-          <span class="num">2</span>
-          <h3><span lang="en">Verify</span><span lang="pt-BR">Confira</span></h3>
+        <li class="step">
+          <span class="num">02 · <span lang="en">VERIFY</span><span lang="pt-BR">CONFIRA</span></span>
           <p><span lang="en">Compare its checksum with the one on the card:</span><span lang="pt-BR">Compare o checksum com o do card:</span></p>
 <pre><code><span class="c"># Linux / macOS</span>
 sha256sum quick_rooms.zip
 <span class="c"># Windows (PowerShell)</span>
 Get-FileHash quick_rooms.zip</code></pre>
         </li>
-        <li class="step" style="--c: var(--cyan)">
-          <span class="num">3</span>
-          <h3><span lang="en">Install</span><span lang="pt-BR">Instale</span></h3>
+        <li class="step">
+          <span class="num">03 · <span lang="en">INSTALL</span><span lang="pt-BR">INSTALE</span></span>
           <p><span lang="en">In the app, use <b>Manage → Plugins</b>. From the command line, install the archive into a plugins folder; it is checked and loaded the same way:</span><span lang="pt-BR">No aplicativo, use <b>Gerenciar → Plugins</b>. Na linha de comando, instale o arquivo numa pasta de plugins; ele é verificado e carregado do mesmo jeito:</span></p>
 <pre><code>ccad plugins install \
   quick_rooms.zip ./plugins
@@ -205,43 +199,41 @@ ccad --plugins ./plugins plugins</code></pre>
   </section>
 
   <section id="security">
-    <div class="wrap">
-      <span class="eyebrow"><span lang="en">Security</span><span lang="pt-BR">Segurança</span></span>
-      <h2><span lang="en">Sandboxed by default</span><span lang="pt-BR">Em sandbox por padrão</span></h2>
-      <p class="sub">
-        <span lang="en">A plugin reaches your project only through ConstructCraft's commands. Anything more must be asked for, and every card shows what a plugin asks for.</span>
-        <span lang="pt-BR">Um plugin só chega ao seu projeto pelos comandos do ConstructCraft. Qualquer coisa além disso precisa ser pedida, e cada card mostra o que o plugin pede.</span>
-      </p>
-      <div class="grid">
-        <div class="card" style="--c: #16a34a">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <h3><span lang="en">No permissions</span><span lang="pt-BR">Sem permissões</span></h3>
-          <p><span lang="en">No files, no network, limits on instructions and memory. Most plugins need nothing more.</span><span lang="pt-BR">Sem arquivos, sem rede, com limites de instruções e de memória. A maioria dos plugins não precisa de mais nada.</span></p>
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow"><span lang="en">Security</span><span lang="pt-BR">Segurança</span></span>
+        <h2><span lang="en">Sandboxed by default</span><span lang="pt-BR">Em sandbox por padrão</span></h2>
+        <p class="sub">
+          <span lang="en">A plugin reaches your project only through ConstructCraft's commands. Anything more must be asked for, and every card shows what a plugin asks for.</span>
+          <span lang="pt-BR">Um plugin só chega ao seu projeto pelos comandos do ConstructCraft. Qualquer coisa além disso precisa ser pedida, e cada card mostra o que o plugin pede.</span>
+        </p>
+      </div>
+      <div class="perm-table">
+        <div class="perm-row">
+          <span class="tag safe"><span lang="en">none</span><span lang="pt-BR">nenhuma</span></span>
+          <div><strong><span lang="en">No permissions</span><span lang="pt-BR">Sem permissões</span></strong><p><span lang="en">No files, no network, limits on instructions and memory. Most plugins need nothing more.</span><span lang="pt-BR">Sem arquivos, sem rede, com limites de instruções e de memória. A maioria dos plugins não precisa de mais nada.</span></p></div>
         </div>
-        <div class="card" style="--c: var(--amber)">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z"/><path d="M14 3v5h5"/></svg></div>
-          <h3><code>files</code></h3>
-          <p><span lang="en">Reads or writes any file through import, export and save. With API 2 a plugin can instead receive just the file you pick.</span><span lang="pt-BR">Lê ou grava qualquer arquivo por importar, exportar e salvar. Com a API 2 o plugin pode, em vez disso, receber só o arquivo que você escolher.</span></p>
+        <div class="perm-row">
+          <span class="tag perm">files</span>
+          <div><strong><span lang="en">Files</span><span lang="pt-BR">Arquivos</span></strong><p><span lang="en">Reads or writes any file through import, export and save. With API 2 a plugin can instead receive just the file you pick.</span><span lang="pt-BR">Lê ou grava qualquer arquivo por importar, exportar e salvar. Com a API 2 o plugin pode, em vez disso, receber só o arquivo que você escolher.</span></p></div>
         </div>
-        <div class="card" style="--c: var(--pink)">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"/></svg></div>
-          <h3><code>tools</code></h3>
-          <p><span lang="en">Runs an external program, such as a simulator, but only one you approve and configure yourself.</span><span lang="pt-BR">Roda um programa externo, como um simulador, mas só um que você aprove e configure.</span></p>
+        <div class="perm-row">
+          <span class="tag perm">tools</span>
+          <div><strong><span lang="en">External tools</span><span lang="pt-BR">Ferramentas externas</span></strong><p><span lang="en">Runs an external program, such as a simulator, but only one you approve and configure yourself.</span><span lang="pt-BR">Roda um programa externo, como um simulador, mas só um que você aprove e configure.</span></p></div>
         </div>
-        <div class="card" style="--c: var(--violet)">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6"/></svg></div>
-          <h3><span lang="en">Review anyway</span><span lang="pt-BR">Examine mesmo assim</span></h3>
-          <p><span lang="en">The index checks entries and archives, and a maintainer reads each plugin before merging, but read a plugin's code before you trust it.</span><span lang="pt-BR">O índice verifica entradas e arquivos, e um mantenedor lê cada plugin antes do merge, mas leia o código de um plugin antes de confiar nele.</span></p>
+        <div class="perm-row">
+          <span class="tag"><span lang="en">review</span><span lang="pt-BR">revisão</span></span>
+          <div><strong><span lang="en">Review anyway</span><span lang="pt-BR">Examine mesmo assim</span></strong><p><span lang="en">The index checks entries and archives, and a maintainer reads each plugin before merging, but read a plugin's code before you trust it.</span><span lang="pt-BR">O índice verifica entradas e arquivos, e um mantenedor lê cada plugin antes do merge, mas leia o código de um plugin antes de confiar nele.</span></p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="publish" class="publish">
-    <div class="wrap split">
+  <section id="publish" class="night">
+    <div class="wrap split" style="align-items: center">
       <div>
         <span class="eyebrow"><span lang="en">For developers</span><span lang="pt-BR">Para desenvolvedores</span></span>
-        <h2><span lang="en">Publish your plugin</span><span lang="pt-BR">Publique o seu plugin</span></h2>
+        <h2><span lang="en">Publish your plugin with one pull request</span><span lang="pt-BR">Publique o seu plugin com um pull request</span></h2>
         <p class="sub">
           <span lang="en">Keep the code in your own repository. Here you add one small file that says where each release is and what it asks for.</span>
           <span lang="pt-BR">Mantenha o código no seu próprio repositório. Aqui você acrescenta um arquivo pequeno que diz onde está cada release e o que ela pede.</span>
@@ -252,27 +244,28 @@ ccad --plugins ./plugins plugins</code></pre>
           <li><span lang="en">Open a pull request adding <code>plugins/&lt;id&gt;.toml</code>.</span><span lang="pt-BR">Abra um pull request que acrescente <code>plugins/&lt;id&gt;.toml</code>.</span></li>
           <li><span lang="en">The checks download your archive and compare it with the entry; once merged, it appears here.</span><span lang="pt-BR">As verificações baixam o seu arquivo e o comparam com a entrada; depois do merge, ele aparece aqui.</span></li>
         </ol>
-        <div class="cta left">
+        <div class="cta">
           <a class="btn primary" href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/CONTRIBUTING.md"><span lang="en">Submission guide</span><span lang="pt-BR">Guia de envio</span></a>
-          <a class="btn ghost" lang="en" href="https://constructcraft.net/automation.html#plugins">Writing a plugin</a>
-          <a class="btn ghost" lang="pt-BR" href="https://constructcraft.net/automacao.html#plugins">Escrevendo um plugin</a>
+          <a class="btn night" lang="en" href="https://constructcraft.net/automation.html#plugins">Writing a plugin</a>
+          <a class="btn night" lang="pt-BR" href="https://constructcraft.net/automacao.html#plugins">Escrevendo um plugin</a>
+          <a class="btn night" href="https://discord.gg/y8ySJZjpK"><span lang="en">Ask on Discord</span><span lang="pt-BR">Pergunte no Discord</span></a>
         </div>
       </div>
-      <div class="win">
-        <div class="win-bar"><i></i><i></i><i></i><span>plugins/quick_rooms.toml</span></div>
-<pre><code><span class="k">id</span> = <span class="s">"quick_rooms"</span>
-<span class="k">name</span> = <span class="s">"Quick rooms"</span>
+      <div class="term">
+        <div class="bar">plugins/quick_rooms.toml</div>
+<pre><code><span class="k">id</span>          = <span class="s">"quick_rooms"</span>
+<span class="k">name</span>        = <span class="s">"Quick rooms"</span>
 <span class="k">description</span> = <span class="s">"Rectangular rooms in one step."</span>
-<span class="k">authors</span> = [<span class="s">"Your Name"</span>]
-<span class="k">license</span> = <span class="s">"MIT"</span>
-<span class="k">repository</span> = <span class="s">"https://github.com/you/quick_rooms"</span>
-<span class="k">tags</span> = [<span class="s">"architecture"</span>, <span class="s">"rooms"</span>]
+<span class="k">authors</span>     = [<span class="s">"Your Name"</span>]
+<span class="k">license</span>     = <span class="s">"MIT"</span>
+<span class="k">repository</span>  = <span class="s">"https://github.com/you/quick_rooms"</span>
+<span class="k">tags</span>        = [<span class="s">"architecture"</span>, <span class="s">"rooms"</span>]
 
-[[<span class="t">versions</span>]]
-<span class="k">version</span> = <span class="s">"0.1.0"</span>
-<span class="k">api</span> = <span class="n">2</span>
-<span class="k">url</span> = <span class="s">"https://github.com/you/…/quick_rooms.zip"</span>
-<span class="k">sha256</span> = <span class="s">"7c5bca74…0224a79"</span>
+[[versions]]
+<span class="k">version</span>     = <span class="s">"0.1.0"</span>
+<span class="k">api</span>         = 2
+<span class="k">url</span>         = <span class="s">"https://github.com/you/…/quick_rooms.zip"</span>
+<span class="k">sha256</span>      = <span class="s">"7c5bca74…0224a79"</span>
 <span class="k">permissions</span> = []</code></pre>
       </div>
     </div>
@@ -281,30 +274,27 @@ ccad --plugins ./plugins plugins</code></pre>
   <section id="family" class="alt">
     <div class="wrap">
       <div class="center">
-        <span class="eyebrow"><span lang="en">The ConstructCraft family</span><span lang="pt-BR">A família ConstructCraft</span></span>
-        <h2><span lang="en">One open ecosystem for BIM</span><span lang="pt-BR">Um ecossistema aberto para BIM</span></h2>
+        <span class="eyebrow"><span lang="en">Ecosystem</span><span lang="pt-BR">Ecossistema</span></span>
+        <h2><span lang="en">One open network for BIM</span><span lang="pt-BR">Uma rede aberta para BIM</span></h2>
         <p class="sub">
           <span lang="en">The app, its components and its plugins: free, open source and independent of any vendor.</span>
           <span lang="pt-BR">O aplicativo, os componentes e os plugins: livres, de código aberto e independentes de qualquer fornecedor.</span>
         </p>
       </div>
       <div class="family">
-        <a class="fam" href="https://constructcraft.net/" style="--c: var(--amber)">
-          <span class="fam-ico"><img src="assets/icon.png" alt="" width="40" height="40"></span>
+        <a class="fam" href="https://constructcraft.net/">
           <span class="fam-host">constructcraft.net</span>
           <h3>ConstructCraft</h3>
           <p><span lang="en">The open source BIM, built in Rust. Plans, sections, 3D, schedules and sheets from one parametric model.</span><span lang="pt-BR">O BIM livre, feito em Rust. Plantas, cortes, 3D, tabelas e folhas a partir de um único modelo paramétrico.</span></p>
-          <span class="fam-go"><span lang="en">Download the app</span><span lang="pt-BR">Baixar o aplicativo</span> →</span>
+          <span class="fam-go"><span lang="en">Download the app →</span><span lang="pt-BR">Baixar o aplicativo →</span></span>
         </a>
-        <a class="fam" href="https://3dcrafthouse.constructcraft.net/" style="--c: #4157ee">
-          <span class="fam-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v18m8-13.5-8 4.5-8-4.5"/></svg></span>
+        <a class="fam" href="https://3dcrafthouse.constructcraft.net/">
           <span class="fam-host">3dcrafthouse.constructcraft.net</span>
           <h3>3D CraftHouse</h3>
-          <p><span lang="en">An open library of parametric furniture, fixtures, doors, windows and lighting, loaded into a project in one click.</span><span lang="pt-BR">Uma biblioteca aberta de mobiliário, louças, portas, janelas e iluminação paramétricos, carregados no projeto com um clique.</span></p>
-          <span class="fam-go"><span lang="en">Browse components</span><span lang="pt-BR">Ver os componentes</span> →</span>
+          <p><span lang="en">An open library of parametric furniture, fixtures, doors, windows, planting and vehicles, loaded into a project in one click.</span><span lang="pt-BR">Uma biblioteca aberta de mobiliário, louças, portas, janelas, vegetação e veículos paramétricos, carregados no projeto com um clique.</span></p>
+          <span class="fam-go"><span lang="en">Browse components →</span><span lang="pt-BR">Ver os componentes →</span></span>
         </a>
-        <div class="fam here" style="--c: var(--violet)">
-          <span class="fam-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v4M15 3v4M7 7h10v4a5 5 0 0 1-10 0V7Zm5 9v5"/></svg></span>
+        <div class="fam here">
           <span class="fam-host">marketplace.constructcraft.net</span>
           <h3>Plugins</h3>
           <p><span lang="en">New commands from the community, for the app, the command line, scripts and AI agents.</span><span lang="pt-BR">Comandos novos da comunidade, para o aplicativo, a linha de comando, scripts e agentes de IA.</span></p>
@@ -315,41 +305,43 @@ ccad --plugins ./plugins plugins</code></pre>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot-grid">
-    <div class="foot-about">
-      <a class="brand" href="./"><img src="assets/icon.png" alt="" width="28" height="28"><span>ConstructCraft</span><span class="brand-tag">Plugins</span></a>
-      <p>
-        <span lang="en">The community index of ConstructCraft plugins. The index is under the <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/LICENSE">MIT License</a>; each plugin keeps its own license.</span>
-        <span lang="pt-BR">O índice comunitário de plugins do ConstructCraft. O índice está sob a <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/LICENSE">Licença MIT</a>; cada plugin mantém a sua própria licença.</span>
-      </p>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div class="about">
+        <a class="brand" href="./"><img src="assets/icon.png" alt="" width="28" height="28"><span>ConstructCraft</span><small>Marketplace</small></a>
+        <p>
+          <span lang="en">The community index of ConstructCraft plugins. The index is under the <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/LICENSE">MIT License</a>; each plugin keeps its own license.</span>
+          <span lang="pt-BR">O índice comunitário de plugins do ConstructCraft. O índice está sob a <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/LICENSE">Licença MIT</a>; cada plugin mantém a sua própria licença.</span>
+        </p>
+      </div>
+      <div class="col">
+        <strong><span lang="en">Ecosystem</span><span lang="pt-BR">Ecossistema</span></strong>
+        <a href="https://constructcraft.net/">ConstructCraft</a>
+        <a href="https://3dcrafthouse.constructcraft.net/">3D CraftHouse</a>
+        <a href="./">Marketplace</a>
+        <a href="https://constructcraft.net/#download"><span lang="en">Download</span><span lang="pt-BR">Baixar</span></a>
+      </div>
+      <div class="col">
+        <strong><span lang="en">Developers</span><span lang="pt-BR">Desenvolvedores</span></strong>
+        <a lang="en" href="https://constructcraft.net/automation.html#plugins">Plugin guide</a>
+        <a lang="pt-BR" href="https://constructcraft.net/automacao.html#plugins">Guia de plugins</a>
+        <a href="https://constructcraft.net/commands.html"><span lang="en">Command reference</span><span lang="pt-BR">Referência de comandos</span></a>
+        <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/CONTRIBUTING.md"><span lang="en">Submission guide</span><span lang="pt-BR">Guia de envio</span></a>
+        <a href="index.json">index.json</a>
+      </div>
+      <div class="col">
+        <strong><span lang="en">Community</span><span lang="pt-BR">Comunidade</span></strong>
+        <a href="https://discord.gg/y8ySJZjpK">Discord</a>
+        <a href="https://github.com/francisreboucas/constructcraft-plugins">GitHub</a>
+        <a href="https://github.com/sponsors/francisreboucas"><span lang="en">Sponsor</span><span lang="pt-BR">Patrocinar</span></a>
+        <a href="https://github.com/francisreboucas/constructcraft-plugins/issues"><span lang="en">Report a plugin</span><span lang="pt-BR">Relatar um plugin</span></a>
+      </div>
     </div>
-    <div>
-      <h4><span lang="en">Ecosystem</span><span lang="pt-BR">Ecossistema</span></h4>
-      <a href="https://constructcraft.net/">ConstructCraft</a>
-      <a href="https://3dcrafthouse.constructcraft.net/">3D CraftHouse</a>
-      <a href="./">Plugins</a>
-      <a href="https://constructcraft.net/#download"><span lang="en">Download</span><span lang="pt-BR">Baixar</span></a>
+    <div class="base">
+      <span>© ConstructCraft contributors · <span lang="en">index under MIT</span><span lang="pt-BR">índice sob MIT</span></span>
+      <span>constructcraft.net · 3dcrafthouse · marketplace</span>
     </div>
-    <div>
-      <h4><span lang="en">Developers</span><span lang="pt-BR">Desenvolvedores</span></h4>
-      <a lang="en" href="https://constructcraft.net/automation.html#plugins">Plugin guide</a>
-      <a lang="pt-BR" href="https://constructcraft.net/automacao.html#plugins">Guia de plugins</a>
-      <a href="https://constructcraft.net/commands.html"><span lang="en">Command reference</span><span lang="pt-BR">Referência de comandos</span></a>
-      <a href="https://github.com/francisreboucas/constructcraft-plugins/blob/main/CONTRIBUTING.md"><span lang="en">Submission guide</span><span lang="pt-BR">Guia de envio</span></a>
-      <a href="index.json">index.json</a>
-    </div>
-    <div>
-      <h4><span lang="en">Community</span><span lang="pt-BR">Comunidade</span></h4>
-      <a href="https://github.com/francisreboucas/constructcraft">GitHub</a>
-      <a href="https://discord.gg/y8ySJZjpK">Discord</a>
-      <a href="https://github.com/sponsors/francisreboucas">♥ <span lang="en">Sponsor</span><span lang="pt-BR">Patrocinar</span></a>
-      <a href="https://www.buymeacoffee.com/francisreboucas">☕ <span lang="en">Buy me a coffee</span><span lang="pt-BR">Pague um café</span></a>
-    </div>
-  </div>
-  <div class="wrap foot-bottom">
-    <span><span lang="en">ConstructCraft is free software under</span><span lang="pt-BR">O ConstructCraft é software livre sob a</span> GPL-3.0-or-later.</span>
-    <a href="https://github.com/francisreboucas/constructcraft-plugins/issues"><span lang="en">Report a problem with a plugin</span><span lang="pt-BR">Relatar um problema com um plugin</span></a>
   </div>
 </footer>
 

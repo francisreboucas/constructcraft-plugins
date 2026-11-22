@@ -5,7 +5,6 @@
 
 (function () {
   const REPO = "https://github.com/francisreboucas/constructcraft-plugins";
-  const PALETTE = ["#ff8a1f", "#6d5cff", "#0ea5c6", "#db2777", "#16a34a", "#4157ee", "#d97706", "#0891b2"];
 
   const state = { lang: "en", plugins: [], tag: null, query: "", noPerms: false, loaded: false, failed: false };
   const $ = (id) => document.getElementById(id);
@@ -45,7 +44,6 @@
   };
   const safeUrl = (u) => (typeof u === "string" && /^https:\/\//.test(u) ? u : null);
   const fileName = (u) => { try { return decodeURIComponent(new URL(u).pathname.split("/").pop()) || "plugin.zip"; } catch (_) { return "plugin.zip"; } };
-  const color = (id) => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return PALETTE[h % PALETTE.length]; };
   const initials = (name) => {
     const w = String(name).split(/[\s_-]+/).filter(Boolean);
     return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "").slice(1, 2))).toUpperCase();
@@ -116,8 +114,7 @@
 
   function card(p) {
     const v = latest(p);
-    const c = color(p.id);
-    return el("article", { class: "plug", style: `--c:${c}` },
+    return el("article", { class: "plug" },
       el("div", { class: "plug-head" },
         el("div", { class: "mono", "aria-hidden": "true" }, initials(p.name)),
         el("div", { class: "plug-title" },
@@ -227,7 +224,7 @@
       );
     });
 
-    return el("div", { style: `--c:${color(p.id)}` },
+    return el("div", null,
       el("div", { class: "d-head" },
         el("div", { class: "mono", "aria-hidden": "true" }, initials(p.name)),
         el("div", null,
